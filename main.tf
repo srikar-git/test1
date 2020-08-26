@@ -1,4 +1,5 @@
 variable "ic_api_key"{}
+variable "name"{}
 provider "ibm"{
   ibmcloud_api_key=var.ic_api_key
 }
@@ -16,7 +17,7 @@ data "ibm_cis_domain" "web_domain" {
 resource "ibm_cis_dns_record" "examplednsa" {
   cis_id           = data.ibm_cis.web_instance.id
   domain_id        = data.ibm_cis_domain.web_domain.id
-  name      = "@"
+  name      = var.name
   content   = "1.2.3.4"
   type      = "A"
   proxied = true
