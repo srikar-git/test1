@@ -1,5 +1,5 @@
 provider "ibm"{
-  ic_api_key=""
+  ic_api_key=var.ic_api_key
 }
 data "ibm_resource_group" "web_group" {
   name = "Default"
