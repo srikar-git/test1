@@ -1,3 +1,4 @@
+variable "ic_api_key"{}
 provider "ibm"{
   ic_api_key=var.ic_api_key
 }
