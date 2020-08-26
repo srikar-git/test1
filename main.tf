@@ -15,7 +15,7 @@ data "ibm_cis_domain" "web_domain" {
 }
 resource "ibm_cis_dns_record" "examplednsa" {
   cis_id           = data.ibm_cis.web_instance.id
-  domain_id        = data.ibm_cis_domain.web_domain.domain_id
+  domain_id        = data.ibm_cis_domain.web_domain.id
   name      = "@"
   content   = "1.2.3.4"
   type      = "A"
