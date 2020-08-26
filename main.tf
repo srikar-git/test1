@@ -18,4 +18,5 @@ resource "ibm_cis_dns_record" "examplednsa" {
   name      = "@"
   content   = "1.2.3.4"
   type      = "A"
+  proxied = true
 }
