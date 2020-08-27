@@ -1,7 +1,11 @@
 variable "ic_api_key"{}
 variable "name"{
   type    = string
-  default = "somevalue"
+  default = "@"
+}
+variable "priority"{
+  type    = number
+  default = 0
 }
 provider "ibm"{
   ibmcloud_api_key=var.ic_api_key
@@ -23,7 +27,7 @@ resource "null_resource" "test_name" {
   }
     
   provisioner "local-exec" {
-    command = "echo - This val ${var.name}"
+    command = "echo - This val ${var.name} and ${var.priority}"
   }
 }
 resource "ibm_cis_dns_record" "examplednsa" {
@@ -40,6 +44,6 @@ resource "ibm_cis_dns_record" "dns_mx_1" {
   name      = "sample"
   ttl       = 3600
   type      = "MX"
-  priority  = "0"
+  priority  = var.priority
   content   = "xyz.mail.protection.outlook.com"
 }
