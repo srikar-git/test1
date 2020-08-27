@@ -1,5 +1,5 @@
 variable "ic_api_key"{}
-variable "name"{}
+# variable "name"{}
 provider "ibm"{
   ibmcloud_api_key=var.ic_api_key
 }
@@ -14,11 +14,20 @@ data "ibm_cis_domain" "web_domain" {
   cis_id = data.ibm_cis.web_instance.id
   domain = "cis-terraform.com"
 }
-resource "ibm_cis_dns_record" "examplednsa" {
+# resource "ibm_cis_dns_record" "examplednsa" {
+#   cis_id           = data.ibm_cis.web_instance.id
+#   domain_id        = data.ibm_cis_domain.web_domain.id
+#   name      = var.name
+#   content   = "1.2.3.4"
+#   type      = "A"
+#   proxied = true
+# }
+resource "ibm_cis_dns_record" "dns_mx_1" {
   cis_id           = data.ibm_cis.web_instance.id
   domain_id        = data.ibm_cis_domain.web_domain.id
-  name      = var.name
-  content   = "1.2.3.4"
-  type      = "A"
-  proxied = true
+  name      = "sample"
+  ttl       = 3600
+  type      = "MX"
+  priority  = "0"
+  content   = "xyz.mail.protection.outlook.com"
 }
